@@ -18,16 +18,21 @@ ApplicationWindow {
       anchors.fill: parent
       color: "black"
 
-      CameraSource {
+      /*CameraSource {
         id: camera
-      }
+      }*/
 
+      PassDialog {
+        id: passwordDialog
+      }
+      /*
       VideoOutput {
         id: video
         visible: false
         source: camera
         anchors.fill: parent
       }
+      */
     }
 
 }
