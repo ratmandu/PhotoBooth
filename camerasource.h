@@ -18,6 +18,7 @@ class CameraSource : public QObject
   Q_PROPERTY(QAbstractVideoSurface *videoSurface READ videoSurface WRITE setVideoSurface)
 public:
   explicit CameraSource(QObject *parent = 0);
+  ~CameraSource();
   // Returns the videoSurface to the QML code, for display in a
   // QML VideoOutput element
   QAbstractVideoSurface* videoSurface() const { return m_surface; }

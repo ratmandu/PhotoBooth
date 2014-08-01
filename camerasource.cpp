@@ -12,3 +12,9 @@ CameraSource::CameraSource(QObject *parent) :
   // Start the camera
   camera->start();
 }
+
+CameraSource::~CameraSource()
+{
+  camera->stop();
+  camera->deleteLater();
+}
