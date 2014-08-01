@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 
     QPixmap emptyCursor(16, 16);
     emptyCursor.fill(Qt::transparent);
-    app.setOverrideCursor(QCursor(emptyCursor));
+//    app.setOverrideCursor(QCursor(emptyCursor));
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
