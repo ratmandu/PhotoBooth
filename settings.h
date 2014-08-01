@@ -4,6 +4,12 @@
 #include <QObject>
 #include <QSettings>
 
+// This entire class is pretty self-explanatory.
+// QML does not currently have a QML->QSettings class
+// so this adds one for ease of use and convenience
+
+// The reason for the different types is that QML on
+// android does not always work properly with QVariants
 class Settings : public QObject
 {
   Q_OBJECT
