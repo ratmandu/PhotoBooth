@@ -4,5 +4,6 @@
         <file>Timers.qml</file>
         <file>PassDialog.qml</file>
         <file>DarkTextFieldStyle.qml</file>
+        <file>DarkButtonStyle.qml</file>
     </qresource>
 </RCC>
