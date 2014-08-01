@@ -6,9 +6,12 @@ import CameraSource 1.0
 
 ApplicationWindow {
     visible: true
-    width: 640
-    height: 480
+    width: 1280
+    height: 720
     title: qsTr("Makers Local 256 Photobooth")
+
+    // uncomment this to make the application full screen
+    //visibility: "FullScreen"
 
     Rectangle {
       id: mainBody
