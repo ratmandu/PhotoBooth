@@ -16,6 +16,7 @@ ApplicationWindow {
     Rectangle {
       id: mainBody
       anchors.fill: parent
+      color: "black"
 
       CameraSource {
         id: camera
@@ -23,7 +24,7 @@ ApplicationWindow {
 
       VideoOutput {
         id: video
-        visible: true
+        visible: false
         source: camera
         anchors.fill: parent
       }
