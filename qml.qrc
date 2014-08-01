@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>Timers.qml</file>
         <file>PassDialog.qml</file>
+        <file>DarkTextFieldStyle.qml</file>
     </qresource>
 </RCC>
