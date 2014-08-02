@@ -6,5 +6,6 @@
         <file>DarkTextFieldStyle.qml</file>
         <file>DarkButtonStyle.qml</file>
         <file>ConfigDialog.qml</file>
+        <file>InvisiButton.qml</file>
     </qresource>
 </RCC>
