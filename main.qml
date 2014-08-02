@@ -12,7 +12,7 @@ ApplicationWindow {
     title: qsTr("Makers Local 256 Photobooth")
 
     // uncomment this to make the application full screen
-    //visibility: "FullScreen"
+//    visibility: "FullScreen"
 
     Rectangle {
       id: mainBody
@@ -23,12 +23,13 @@ ApplicationWindow {
         id: settings
       }
 
-      /*CameraSource {
+      CameraSource {
         id: camera
-      }*/
+      }
 
       PassDialog {
         id: passwordDialog
+        visible: false
 
         onPasswordCorrect: {
 
@@ -38,14 +39,13 @@ ApplicationWindow {
 
         }
       }
-      /*
+
       VideoOutput {
         id: video
-        visible: false
         source: camera
         anchors.fill: parent
       }
-      */
+
     }
 
 }
