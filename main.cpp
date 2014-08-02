@@ -1,7 +1,9 @@
-#include <QApplication>
-#include <QQmlApplicationEngine>
-#include <QtQuick/QQuickItem>
 #include <QPixmap>
+#include <QApplication>
+#include <QtQuick/QQuickItem>
+#include <QQmlApplicationEngine>
+
+#include "settings.h"
 #include "camerasource.h"
 
 int main(int argc, char *argv[])
@@ -10,6 +12,7 @@ int main(int argc, char *argv[])
 
     // Register our CameraSource so our QML code can use it
     qmlRegisterType<CameraSource>("CameraSource", 1, 0, "CameraSource");
+    qmlRegisterType<Settings>("Settings", 1, 0, "Settings");
 
     QPixmap emptyCursor(16, 16);
     emptyCursor.fill(Qt::transparent);

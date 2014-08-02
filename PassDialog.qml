@@ -7,6 +7,9 @@ Rectangle {
   anchors.fill: parent
   color: "black"
 
+  signal passwordCorrect()
+  signal passwordIncorrect()
+
   Column {
     id: passColumn
     anchors.fill: parent
@@ -15,7 +18,7 @@ Rectangle {
     spacing: 20
 
     Text {
-      color: "White"
+      color: "#eee"
       anchors.horizontalCenter: parent.horizontalCenter
       horizontalAlignment: Text.AlignHCenter
       font.pixelSize: 30
@@ -28,6 +31,7 @@ Rectangle {
       width: parent.width / 2
       anchors.horizontalCenter: parent.horizontalCenter
       horizontalAlignment: TextInput.AlignHCenter
+      echoMode: TextInput.Password
       placeholderText: "Please enter setup pin."
 
       style: DarkTextFieldStyle{}
@@ -149,7 +153,25 @@ Rectangle {
         Layout.fillWidth: true
         Layout.fillHeight: true
         style: DarkButtonStyle {}
+
+        onClicked: {
+          checkPassword(passwordField.text)
+          passwordField.text = ""
+        }
       }
     }
   }
+
+  // this function checks to see if the correct password was entered
+  // if password has not previously been set, it defaults to 0000
+  function checkPassword(entered) {
+    if (entered == settings.getString("SettingsPass", "0000")) {
+      console.log("Correct!")
+      passwordCorrect()
+    } else {
+      console.log("Incorrect!")
+      passwordIncorrect()
+    }
+  }
 }
+

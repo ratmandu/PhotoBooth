@@ -3,6 +3,7 @@ import QtQuick.Controls 1.1
 import QtMultimedia 5.3
 
 import CameraSource 1.0
+import Settings 1.0
 
 ApplicationWindow {
     visible: true
@@ -18,12 +19,24 @@ ApplicationWindow {
       anchors.fill: parent
       color: "black"
 
+      Settings {
+        id: settings
+      }
+
       /*CameraSource {
         id: camera
       }*/
 
       PassDialog {
         id: passwordDialog
+
+        onPasswordCorrect: {
+
+        }
+
+        onPasswordIncorrect: {
+
+        }
       }
       /*
       VideoOutput {
