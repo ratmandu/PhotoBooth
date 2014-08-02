@@ -7,5 +7,6 @@
         <file>DarkButtonStyle.qml</file>
         <file>ConfigDialog.qml</file>
         <file>InvisiButton.qml</file>
+        <file>CountdownDisplay.qml</file>
     </qresource>
 </RCC>

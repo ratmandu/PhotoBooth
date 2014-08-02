@@ -32,11 +32,11 @@ ApplicationWindow {
         visible: false
 
         onPasswordCorrect: {
-
         }
 
         onPasswordIncorrect: {
-
+          passwordDialog.visible = false
+          video.visible = true
         }
       }
 
@@ -46,6 +46,26 @@ ApplicationWindow {
         anchors.fill: parent
       }
 
+      CountdownDisplay {
+        id: countDown
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.topMargin: 20
+        countDownNumber: "3"
+      }
+
+      InvisiButton {
+        id: settingsButton
+        width: 150
+        height: 150
+        anchors.top: parent.top
+        anchors.right: parent.right
+
+        onButtonClick: {
+          passwordDialog.visible = true
+          video.visible = false
+        }
+      }
     }
 
 }
