@@ -3,8 +3,10 @@
 
 #include <QImage>
 #include <QDebug>
+#include <QPixmap>
 #include <QObject>
 #include <QCamera>
+#include <QPainter>
 #include <QDateTime>
 #include <QCameraControl>
 #include <QDesktopServices>
@@ -46,6 +48,10 @@ public:
   // and save the original to the drive
   Q_INVOKABLE void takePicture(int pictureNumber);
 
+  // This takes the previous images, and combines them into a
+  // strip, then saves, and send the filename to the QML code
+  Q_INVOKABLE void generateStrip(int numberOfPictures);
+
 private:
   // our camera object
   QCamera *camera;
@@ -67,6 +73,7 @@ private:
 
 signals:
   void pictureCaptured(QString imageLocation);
+  void stripGenerated(QString imageLocation);
 
 public slots:
   // This is what actually sends the new frame off to the
@@ -80,6 +87,7 @@ public slots:
 
 private slots:
   void pictureSaved(int id, QString imageLocation);
+
 };
 
 #endif // CAMERASOURCE_H

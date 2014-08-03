@@ -35,6 +35,25 @@ void CameraSource::takePicture(int pictureNumber)
   }
 }
 
+void CameraSource::generateStrip(int numberOfPictures)
+{
+  QPixmap finalStrip(takenPictures[numberOfPictures]->width() + 10, (takenPictures[numberOfPictures]->height() * numberOfPictures) + (10 * numberOfPictures));
+  finalStrip.fill();
+
+  QPainter *p = new QPainter(&finalStrip);
+
+  for (int i = 0; i < numberOfPictures; i++) {
+    p->drawImage(5, (takenPictures[numberOfPictures]->height() * i) + (5 * i), takenPictures[i]);
+  }
+
+  QString finalStripLocation = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
+  finalStripLocation.append("/Final - ");
+  finalStripLocation.append(QDateTime::currentDateTime().toString(Qt::TextDate)).append(".jpg");
+  finalStrip.save(finalStripLocation);
+
+  emit stripGenerated(finalStripLocation);
+}
+
 void CameraSource::pictureSaved(int id, QString imageLocation) {
   emit pictureCaptured(imageLocation);
 }
