@@ -40,6 +40,10 @@ public:
     }
   }
 
+  // This will actually take a picture and store it in memory
+  // and save the original to the drive
+  Q_INVOKABLE void takePicture(int pictureNumber);
+
 private:
   // our camera object
   QCamera *camera;
@@ -52,6 +56,9 @@ private:
 
   // This is our actual surface, that the camera image sits on in RAM
   QAbstractVideoSurface *m_surface;
+
+  // stores the taken images until the final strip can be created and saved
+  QImage *takenPictures[6];
 
 signals:
 
