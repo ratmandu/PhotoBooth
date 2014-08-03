@@ -1,21 +1,31 @@
 import QtQuick 2.0
 
-Component {
+Item {
+  property alias countdownTimer: countdownTimer
+  property alias afterPictureTimer: afterPictureTimer
+  property alias finalImageDisplayTimer: finalImageDisplayTimer
+
   Timer {
     id: countdownTimer
     running: false
-    interval: 1000
+    interval: settings.getInt("countDownTimer", 1000)
+
+    onTriggered: {
+      if (counters.countDownCounter > 0) {
+        counters.countDownCounter -= 1
+      }
+    }
   }
 
   Timer {
     id: afterPictureTimer
     running: false
-    interval: 1500
+    interval: settings.getInt("afterPictureTimerInterval", 1500)
   }
 
   Timer {
     id: finalImageDisplayTimer
     running: false
-    interval: 5000
+    interval: settings.getInt("finalImageDisplayTimerInterval", 5000)
   }
 }
