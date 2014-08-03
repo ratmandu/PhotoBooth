@@ -8,5 +8,6 @@
         <file>ConfigDialog.qml</file>
         <file>InvisiButton.qml</file>
         <file>CountdownDisplay.qml</file>
+        <file>Counters.qml</file>
     </qresource>
 </RCC>
