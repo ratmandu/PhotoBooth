@@ -110,7 +110,7 @@ void CameraSource::generateStrip(int numberOfPictures)
   QString finalStripLocation = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
 
   // Add the folder where they will be saved
-  finalStripLocation.append("/PhotoBooth/Final/");
+  finalStripLocation.append("/Photobooth/Final/");
 
   // and append the current date and time, plus a file extension
   finalStripLocation.append(QDateTime::currentDateTime().toString(Qt::TextDate)).append(".jpg");
