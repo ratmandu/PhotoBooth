@@ -28,9 +28,14 @@ Item {
 
     onTriggered: {
       pictureDisplay.visible = false
-      if (counters.imageCount > 0) {
+      video.visible = true
+      countDown.visible = true
+      if (counters.imageCount - 1 > 0) {
         counters.imageCount -= 1
         countdownTimer.start()
+      } else {
+        counters.imageCount = settings.getInt("ImageCount", 4)
+        // TODO: Generate final strip here
       }
     }
   }
@@ -39,5 +44,11 @@ Item {
     id: finalImageDisplayTimer
     running: false
     interval: settings.getInt("finalImageDisplayTimerInterval", 5000)
+
+    onTriggered: {
+      pictureDisplay.visible = false
+      video.visible = true
+      startButton.visible = true
+    }
   }
 }
