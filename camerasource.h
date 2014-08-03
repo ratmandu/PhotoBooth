@@ -71,6 +71,9 @@ private:
   // stores the last image save location
   QString saveLocation;
 
+  // Last picture number
+  int lastPictureNumber;
+
 signals:
   void pictureCaptured(QString imageLocation);
   void stripGenerated(QString imageLocation);
