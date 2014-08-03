@@ -15,7 +15,8 @@ Item {
         counters.countDownCounter -= 1
         countdownTimer.start()
       } else if (counters.countDownCounter == 0) {
-
+        camera.takePicture(counters.imageCount)
+        counters.countDownCounter = settings.getInt("CountDownCounter", 3)
       }
     }
   }
@@ -24,6 +25,14 @@ Item {
     id: afterPictureTimer
     running: false
     interval: settings.getInt("afterPictureTimerInterval", 1500)
+
+    onTriggered: {
+      pictureDisplay.visible = false
+      if (counters.imageCount > 0) {
+        counters.imageCount -= 1
+        countdownTimer.start()
+      }
+    }
   }
 
   Timer {
