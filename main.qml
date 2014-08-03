@@ -46,12 +46,16 @@ ApplicationWindow {
         anchors.fill: parent
       }
 
+      Counters {
+        id: counters
+      }
+
       CountdownDisplay {
         id: countDown
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         anchors.topMargin: 20
-        countDownNumber: "3"
+        countDownNumber: counters.countDownCounter
       }
 
       InvisiButton {
