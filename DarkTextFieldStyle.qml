@@ -24,7 +24,8 @@ import QtQuick.Controls.Styles 1.2
 // We want to make the TextField consistent
 // with the rest of the application's looks
 TextFieldStyle {
-  textColor: "white"
+  // since the button is dark, we want a light text color
+  textColor: "#eee"
 
   background: Rectangle {
     color: "black"
