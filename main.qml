@@ -27,8 +27,10 @@ ApplicationWindow {
         id: camera
 
         onPictureCaptured: {
-          pictureDisplay.source = imageLocation
+          pictureDisplay.source = "file:///" + imageLocation
           pictureDisplay.visible = true
+          video.visible = false
+          countDown.visible = false
           timers.afterPictureTimer.start()
         }
       }
