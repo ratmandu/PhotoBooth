@@ -9,5 +9,6 @@
         <file>InvisiButton.qml</file>
         <file>CountdownDisplay.qml</file>
         <file>Counters.qml</file>
+        <file>StartButton.qml</file>
     </qresource>
 </RCC>
