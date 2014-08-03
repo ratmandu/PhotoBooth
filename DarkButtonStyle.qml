@@ -21,6 +21,8 @@ import QtQuick 2.0
 import QtQuick.Controls 1.2
 import QtQuick.Controls.Styles 1.2
 
+// We want to make the buttons consistent with
+// the rest of the application, so we style them
 ButtonStyle {
   background: Rectangle {
     color: "black"
@@ -31,6 +33,8 @@ ButtonStyle {
     border.width: 1
     radius: 5
 
+    // we change the gradient depending on whether the button is
+    // pressed or not. if it's pressed, we simply reverse it
     gradient: Gradient {
       GradientStop { color: "#000"; position: control.pressed ? 0.0 : 1.0 }
       GradientStop { color: "#333"; position: control.pressed ? 1.0 : 0.0 }

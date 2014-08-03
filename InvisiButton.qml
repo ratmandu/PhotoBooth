@@ -19,13 +19,19 @@
 
 import QtQuick 2.0
 
+// This is an invisible button,
+// which we will use to open the
+// settings panel
 Rectangle {
   width: 100
   height: 100
   color: "transparent"
 
+  // our signal that tells the main code
+  // that we have been clicked
   signal buttonClick()
 
+  // the actual area that the mouse interacts with
   MouseArea {
     anchors.fill: parent
 

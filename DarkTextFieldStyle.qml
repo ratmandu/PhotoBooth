@@ -21,6 +21,8 @@ import QtQuick 2.0
 import QtQuick.Controls 1.2
 import QtQuick.Controls.Styles 1.2
 
+// We want to make the TextField consistent
+// with the rest of the application's looks
 TextFieldStyle {
   textColor: "white"
 

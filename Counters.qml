@@ -20,6 +20,10 @@
 import QtQuick 2.0
 
 Item {
+  // this holds our countdown number
   property int countDownCounter: 3
+
+  // this holds the number of images
+  // we want per strip
   property int imageCount: 4
 }
