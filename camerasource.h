@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QObject>
 #include <QCamera>
+#include <QDateTime>
 #include <QCameraControl>
 #include <QCameraImageCapture>
 #include <QVideoSurfaceFormat>
@@ -61,6 +62,7 @@ private:
   QImage *takenPictures[6];
 
 signals:
+  void pictureCaptured(QString imageLocation);
 
 public slots:
   // This is what actually sends the new frame off to the
