@@ -25,6 +25,12 @@ ApplicationWindow {
 
       CameraSource {
         id: camera
+
+        onPictureCaptured: {
+          pictureDisplay.source = imageLocation
+          pictureDisplay.visible = true
+          timers.afterPictureTimer.start()
+        }
       }
 
       Timers {
@@ -42,6 +48,11 @@ ApplicationWindow {
           passwordDialog.visible = false
           video.visible = true
         }
+      }
+
+      Image {
+        id: pictureDisplay
+        visible: false
       }
 
       VideoOutput {
