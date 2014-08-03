@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-Rectangle {
-  width: 100
-  height: 62
+Component {
+  property int countDownCounter: 3
+  property int imageCount: 4
 }
