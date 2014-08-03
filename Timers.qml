@@ -36,6 +36,7 @@ Item {
       } else {
         counters.imageCount = settings.getInt("ImageCount", 4)
         // TODO: Generate final strip here
+        camera.generateStrip(settings.getInt("ImageCount", 4))
       }
     }
   }
