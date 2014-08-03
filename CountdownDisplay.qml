@@ -19,26 +19,46 @@
 
 import QtQuick 2.0
 
+// This is our countdown display, which gives
+// the user an indication of when the picture
+// will be taken.
 Rectangle {
-
+  // we use a property alias here to be able to set
+  // the count down number from outside
   property alias countDownNumber: countNumber.text
 
   width: 250
   height: 250
+
+  // make the rectangle rounded
   radius: 15
+
+  // We want it mostly transparent
   color: Qt.rgba(0,0,0,0.2)
+
+  // With a pretty, decently transparent border
   border.width: 1
   border.color: Qt.rgba(0.25, 0.25, 0.25, 0.5)
+
+  // make sure it is smooth
   antialiasing: true
 
+  // This is our actual number display
   Text {
     id: countNumber
+    // center it
     anchors.centerIn: parent
+    // make the text the same height as the rectangle
     font.pixelSize: parent.height
+    // we want to be able to see it, against the dark background
     color: "white"
+    // make it smooth
     antialiasing: true
+    // make it completely opaque
     opacity: 1.0
 
+    // We want to use the OS's native rendering for the font
+    // this makes it much nicer to look at, with giant size
     renderType: Text.NativeRendering
   }
 }

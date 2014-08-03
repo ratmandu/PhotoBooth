@@ -18,10 +18,23 @@
  */
 
 import QtQuick 2.0
+import QtQuick.Layouts 1.1
+import QtQuick.Controls 1.2
+import QtQuick.Controls.Styles 1.2
 
+// This holds all of our controls for changing settings
 Rectangle {
   anchors.fill: parent
   color: "black"
 
+  // TODO: Actually create the controls for changing settings
 
+  function saveSettings() {
+    // TODO: Save settings and close the panel here
+  }
+
+  function loadSettings() {
+    // TODO: load all the settings here
+  }
 }
+
