@@ -14,14 +14,14 @@ Rectangle {
 
   Text {
     id: countNumber
-    width: parent.width
-    height: parent.height
+    anchors.centerIn: parent
     font.pixelSize: parent.height
-    horizontalAlignment: Text.horizontalCenter
-    verticalAlignment: Text.verticalCenter
+
 //    text: "3"
     color: "white"
     antialiasing: true
     opacity: 1.0
+
+    renderType: Text.NativeRendering
   }
 }
