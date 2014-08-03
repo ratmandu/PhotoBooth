@@ -94,7 +94,10 @@ private:
   int lastPictureNumber;
 
 signals:
+  // tells the QML code where to find the single image
   void pictureCaptured(QString imageLocation);
+
+  // tells the QML code where to find the final strip
   void stripGenerated(QString imageLocation);
 
 public slots:
@@ -103,11 +106,15 @@ public slots:
   void onNewVideoContentReceived(const QVideoFrame &frame)
   {
     // make sure the surface is valid
-    if (m_surface)
-      m_surface->present(frame); // <-- present the frame
+    if (m_surface) {
+      // actually present the frame
+      m_surface->present(frame);
+    }
   }
 
 private slots:
+  // gets called by the capture object when it
+  // finishes saving the image
   void pictureSaved(int id, QString imageLocation);
 
 };

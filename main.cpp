@@ -31,13 +31,23 @@ int main(int argc, char *argv[])
 
   // Register our CameraSource so our QML code can use it
   qmlRegisterType<CameraSource>("CameraSource", 1, 0, "CameraSource");
+
+  // Same for our Settings class
   qmlRegisterType<Settings>("Settings", 1, 0, "Settings");
 
+  // Here we are creating a blank cursor
   QPixmap emptyCursor(16, 16);
+
+  // Filling it with transparent pixels
   emptyCursor.fill(Qt::transparent);
+
+  // and setting it as the default application cursor
   //    app.setOverrideCursor(QCursor(emptyCursor));
 
+  // We create a QML Application engine
   QQmlApplicationEngine engine;
+
+  // And give it the location to our main qml file
   engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
   return app.exec();
