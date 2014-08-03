@@ -19,10 +19,7 @@
 
 #include "camerasource.h"
 
-/**
- * @brief CameraSource::CameraSource
- * @param parent
- */
+// Constructor for the class
 CameraSource::CameraSource(QObject *parent) :
   QObject(parent)
 {
@@ -38,54 +35,101 @@ CameraSource::CameraSource(QObject *parent) :
   // Start the camera
   camera->start();
 
+  // Connects the imageSaved signal, to the pictureSaved slot
+  // basically alerts the application that the picture has been
+  // saved and can be loaded and displayed by the QML code
   connect(capture, SIGNAL(imageSaved(int,QString)), this, SLOT(pictureSaved(int, QString)));
 }
 
+// Destructor, gets called when the class is destroyed
 CameraSource::~CameraSource()
 {
+  // Stop the camera
   camera->stop();
+
+  // delete the capture object
+  capture->deleteLater();
+
+  // delete the camera object
   camera->deleteLater();
 }
 
+// Takes a picture, and saves the image
 void CameraSource::takePicture(int pictureNumber)
 {
+  // make sure the capture object is ready to capture an image
   if (capture->isReadyForCapture()) {
+    // We need to find the proper place to save the pictures
     saveLocation = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
-    saveLocation.append("/").append(QDateTime::currentDateTime().toString(Qt::TextDate)).append(".jpg");
+
+    // we append the current date and time, as well as a file extension
+    saveLocation.append("/Photobooth/SinglePics/").append(QDateTime::currentDateTime().toString(Qt::TextDate)).append(".jpg");
+
+    // tell the capture object to actually capture a picture
     capture->capture(saveLocation);
-    qDebug() << saveLocation << pictureNumber;
+
+    // save the last picture number, for future reference when we
+    // save the picture in ram for the final strip generation
     lastPictureNumber = pictureNumber;
   }
 }
 
+// Generates the final image strip, saves it, and sends the file path
+// off to the QML code to be displayed
 void CameraSource::generateStrip(int numberOfPictures)
 {
-  qDebug() << takenPictures[0]->size();
+  // Create our QPixmap which will hold the finalStrip
+  // needs to be the right size for the number of pictures
+  // we have taken, plus a border to make it pretty
   QPixmap finalStrip(takenPictures[0]->width() + 10, (takenPictures[0]->height() * numberOfPictures) + (10 * numberOfPictures) + 5);
+
+  // fill the blank image with white
   finalStrip.fill();
 
+  // create a painter
   QPainter *p = new QPainter();
 
+  // start the painter, setting the QPixmap as our drawing device
   p->begin(&finalStrip);
 
+  // draw the pictures on the final strip, leaving a gap between them, and a border around the whole image
   for (int i = 0; i < numberOfPictures; i++) {
     p->drawImage(5, (takenPictures[i]->height() * i) + (10 * (i + 1)), * takenPictures[(numberOfPictures - 1) - i]);
   }
 
+  // stop the painter
   p->end();
 
+  // free up the memory the painter was using
   delete p;
 
+  // This finds the platform specific default picture location
+  // ~/Pictures on OSX and Linux
+  // C:\Documents And Settings\<USERNAME>\Pictures on Windows
+  // Have not tested for Android, iOS, Blackberry, etc yet
   QString finalStripLocation = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
-  finalStripLocation.append("/Final - ");
+
+  // Add the folder where they will be saved
+  finalStripLocation.append("/PhotoBooth/Final/");
+
+  // and append the current date and time, plus a file extension
   finalStripLocation.append(QDateTime::currentDateTime().toString(Qt::TextDate)).append(".jpg");
+
+  // Finally, we save the image
   finalStrip.save(finalStripLocation);
 
+  // And we tell the QML code where it is
   emit stripGenerated(finalStripLocation);
 }
 
+// This gets called when the capture object
+// finishes saving the image
 void CameraSource::pictureSaved(int id, QString imageLocation) {
+  // Saves the image to RAM so we can quickly generate the
+  // final image strip
   takenPictures[lastPictureNumber - 1] = new QImage(imageLocation);
+
+  // Tell the QML code that it is taken, and where to find it
   emit pictureCaptured(imageLocation);
 }
 
