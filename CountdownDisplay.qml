@@ -16,8 +16,6 @@ Rectangle {
     id: countNumber
     anchors.centerIn: parent
     font.pixelSize: parent.height
-
-//    text: "3"
     color: "white"
     antialiasing: true
     opacity: 1.0
