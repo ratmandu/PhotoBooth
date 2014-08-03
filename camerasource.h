@@ -7,6 +7,7 @@
 #include <QCamera>
 #include <QDateTime>
 #include <QCameraControl>
+#include <QDesktopServices>
 #include <QCameraImageCapture>
 #include <QVideoSurfaceFormat>
 #include <QAbstractVideoSurface>
@@ -61,6 +62,9 @@ private:
   // stores the taken images until the final strip can be created and saved
   QImage *takenPictures[6];
 
+  // stores the last image save location
+  QString saveLocation;
+
 signals:
   void pictureCaptured(QString imageLocation);
 
@@ -74,6 +78,8 @@ public slots:
       m_surface->present(frame); // <-- present the frame
   }
 
+private slots:
+  void pictureSaved(int id, QString imageLocation);
 };
 
 #endif // CAMERASOURCE_H

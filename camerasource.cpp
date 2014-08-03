@@ -14,6 +14,8 @@ CameraSource::CameraSource(QObject *parent) :
 
   // Start the camera
   camera->start();
+
+  connect(capture, SIGNAL(imageSaved(int,QString)), this, SLOT(pictureSaved(int, QString)));
 }
 
 CameraSource::~CameraSource()
@@ -25,11 +27,15 @@ CameraSource::~CameraSource()
 void CameraSource::takePicture(int pictureNumber)
 {
   if (capture->isReadyForCapture()) {
-    QString saveLocation = "./Images/SingleImages/";
-    saveLocation.append(QDateTime::currentDateTime().toString(Qt::TextDate)).append(".jpg");
+    saveLocation = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
+    saveLocation.append("/").append(QDateTime::currentDateTime().toString(Qt::TextDate)).append(".jpg");
     capture->capture(saveLocation);
+    qDebug() << saveLocation;
     takenPictures[pictureNumber] = new QImage(saveLocation);
-
-    emit pictureCaptured(saveLocation);
   }
 }
+
+void CameraSource::pictureSaved(int id, QString imageLocation) {
+  emit pictureCaptured(imageLocation);
+}
+
