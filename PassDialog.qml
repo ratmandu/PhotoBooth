@@ -22,10 +22,14 @@ import QtQuick.Controls 1.2
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Styles 1.2
 
+// this is our quick and simple numeric pin based
+// password dialog, with buttons!
 Rectangle {
   anchors.fill: parent
   color: "black"
 
+  // signals to tell the rest of the code if the
+  // entered password was correct or not
   signal passwordCorrect()
   signal passwordIncorrect()
 
@@ -36,6 +40,8 @@ Rectangle {
     anchors.bottomMargin: 15
     spacing: 20
 
+    // we have some prompting text to tell the
+    // user what to do, because stupid users
     Text {
       color: "#eee"
       anchors.horizontalCenter: parent.horizontalCenter
@@ -44,15 +50,18 @@ Rectangle {
       text: "Please enter setup PIN"
     }
 
+    // our text field that holds the password
     TextField {
       id: passwordField
       height: 50
       width: parent.width / 2
       anchors.horizontalCenter: parent.horizontalCenter
       horizontalAlignment: TextInput.AlignHCenter
+      // we are entering a password, so dont actually
+      // echo back the password, just character placeholders
       echoMode: TextInput.Password
-      placeholderText: "Please enter setup pin."
 
+      // apply our dark style
       style: DarkTextFieldStyle{}
     }
 
@@ -65,15 +74,17 @@ Rectangle {
 
       anchors.horizontalCenter: parent.horizontalCenter
 
-      Layout.minimumHeight: 25
-      Layout.minimumWidth: 25
-
+      // here we create buttons, i only need to comment one of them
+      // since they are all pretty much the same
       Button {
         text: "1"
+        // make sure we fill the grid cell with the button
         Layout.fillWidth: true
         Layout.fillHeight: true
+        // set our dark style
         style: DarkButtonStyle {}
 
+        // and we add this character to the password textfield when clicked
         onClicked: passwordField.insert(passwordField.length, text)
       }
 
@@ -149,12 +160,14 @@ Rectangle {
         onClicked: passwordField.insert(passwordField.length, text)
       }
 
+      // clear the password field
       Button {
         text: "Clear"
         Layout.fillWidth: true
         Layout.fillHeight: true
         style: DarkButtonStyle {}
 
+        // empty that thing out!
         onClicked: passwordField.text = ""
       }
 
@@ -167,6 +180,7 @@ Rectangle {
         onClicked: passwordField.insert(passwordField.length, text)
       }
 
+      // we've entered the password, check it
       Button {
         text: "Enter"
         Layout.fillWidth: true
@@ -174,7 +188,9 @@ Rectangle {
         style: DarkButtonStyle {}
 
         onClicked: {
+          // lets check the password
           checkPassword(passwordField.text)
+          // clear the password field out
           passwordField.text = ""
         }
       }
@@ -184,11 +200,12 @@ Rectangle {
   // this function checks to see if the correct password was entered
   // if password has not previously been set, it defaults to 0000
   function checkPassword(entered) {
+    // check yourself
     if (entered == settings.getString("SettingsPass", "0000")) {
-      console.log("Correct!")
+      console.log("Correct password!")
       passwordCorrect()
-    } else {
-      console.log("Incorrect!")
+    } else { // before you wreck yourself
+      console.log("Incorrect password!")
       passwordIncorrect()
     }
   }

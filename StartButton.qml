@@ -19,6 +19,7 @@
 
 import QtQuick 2.0
 
+// This button starts the photobooth process
 Rectangle {
   signal buttonClicked()
 
@@ -30,9 +31,10 @@ Rectangle {
   border.width: 1
   border.color: Qt.rgba(0.5, 0.5, 0.5, 0.75)
 
+  // we want a slightly transparent button
   gradient: Gradient {
-    GradientStop { color: Qt.rgba(0, 0, 0, 0.75); position: 1.0 }
-    GradientStop { color: Qt.rgba(0.25, 0.25, 0.25, 0.75); position: 0.0 }
+    GradientStop { color: Qt.rgba(0, 0, 0, 0.75); position: mousearea.pressed ? 0.0 : 1.0 }
+    GradientStop { color: Qt.rgba(0.25, 0.25, 0.25, 0.75); position: mousearea.pressed ? 1.0 : 0.0 }
   }
 
   Text {
@@ -45,8 +47,8 @@ Rectangle {
   }
 
   MouseArea {
+    id: mousearea
     anchors.fill: parent
-
     onClicked: buttonClicked()
   }
 }
