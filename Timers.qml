@@ -13,6 +13,9 @@ Item {
     onTriggered: {
       if (counters.countDownCounter > 0) {
         counters.countDownCounter -= 1
+        countdownTimer.start()
+      } else if (counters.countDownCounter == 0) {
+
       }
     }
   }
