@@ -33,6 +33,14 @@ ApplicationWindow {
           countDown.visible = false
           timers.afterPictureTimer.start()
         }
+
+        onStripGenerated: {
+          pictureDisplay.source = "file:///" + imageLocation
+          pictureDisplay.visible = true
+          video.visible = false
+          countDown.visible = false
+          timers.finalImageDisplayTimer.start()
+        }
       }
 
       Timers {
@@ -54,7 +62,9 @@ ApplicationWindow {
 
       Image {
         id: pictureDisplay
+        fillMode: Image.PreserveAspectFit
         visible: false
+        anchors.fill: parent
       }
 
       VideoOutput {
