@@ -52,10 +52,20 @@ ApplicationWindow {
 
       CountdownDisplay {
         id: countDown
+        visible: false
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         anchors.topMargin: 20
         countDownNumber: counters.countDownCounter
+      }
+
+      StartButton {
+        id: startButton
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.topMargin: 20
+
+        visible: true
       }
 
       InvisiButton {
