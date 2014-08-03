@@ -17,8 +17,10 @@
   along with Photobooth.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QDir>
 #include <QPixmap>
 #include <QApplication>
+#include <QDesktopServices>
 #include <QtQuick/QQuickItem>
 #include <QQmlApplicationEngine>
 
@@ -28,6 +30,21 @@
 int main(int argc, char *argv[])
 {
   QApplication app(argc, argv);
+
+  // we are going to need to check to see if our folders are
+  // created already, or if this is the first run
+  QString folder = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
+  folder.append("/Photobooth");
+
+  // check if the Photobooth folder exists
+  if (!QDir(folder).exists()) {
+    // nope
+    QDir dir(folder);
+    folder.append("/%1");
+    // lets create the folders we need
+    dir.mkpath(folder.arg("Final"));
+    dir.mkpath(folder.arg("SinglePics"));
+  }
 
   // Register our CameraSource so our QML code can use it
   qmlRegisterType<CameraSource>("CameraSource", 1, 0, "CameraSource");
