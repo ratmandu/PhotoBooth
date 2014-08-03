@@ -27,6 +27,10 @@ ApplicationWindow {
         id: camera
       }
 
+      Timers {
+        id: timers
+      }
+
       PassDialog {
         id: passwordDialog
         visible: false
@@ -66,6 +70,12 @@ ApplicationWindow {
         anchors.topMargin: 20
 
         visible: true
+
+        onButtonClicked: {
+          startButton.visible = false
+          countDown.visible = true
+          timers.countdownTimer.start()
+        }
       }
 
       InvisiButton {
