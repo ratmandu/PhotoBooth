@@ -24,7 +24,7 @@ CameraSource::CameraSource(QObject *parent) :
   QObject(parent)
 {
   // Create the camera object
-  camera = new QCamera(this);
+  camera = new QCamera(QCamera::FrontFace);
 
   // create the capture object, this takes the pictures
   capture = new QCameraImageCapture(camera, this);
