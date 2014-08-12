@@ -37,7 +37,7 @@ ApplicationWindow {
   title: qsTr("Makers Local 256 Photobooth")
 
   // uncomment this to make the application full screen
-  //    visibility: "FullScreen"
+  visibility: "FullScreen"
 
   Rectangle {
     id: mainBody
@@ -47,6 +47,15 @@ ApplicationWindow {
     // our settings element
     Settings {
       id: settings
+    }
+
+    // this is our video preview element
+    VideoOutput {
+      id: video
+      // we want to see the camera output as a preview
+      source: camera
+      // fill the screen/window
+      anchors.fill: parent
     }
 
     // our camera source
@@ -121,15 +130,6 @@ ApplicationWindow {
       // we dont want to see it yet
       visible: false
       // fill the screen (or at least the window)
-      anchors.fill: parent
-    }
-
-    // this is our video preview element
-    VideoOutput {
-      id: video
-      // we want to see the camera output as a preview
-      source: camera
-      // fill the screen/window
       anchors.fill: parent
     }
 
