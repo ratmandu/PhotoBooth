@@ -60,6 +60,7 @@ public:
       // set the surface as the viewfinder for the camera, for
       // live preview of the image
       camera->setViewfinder(m_surface);
+      camera->start();
     }
   }
 

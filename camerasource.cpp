@@ -33,7 +33,7 @@ CameraSource::CameraSource(QObject *parent) :
   camera->setCaptureMode(QCamera::CaptureStillImage);
 
   // Start the camera
-  camera->start();
+//  camera->start();
 
   // Connects the imageSaved signal, to the pictureSaved slot
   // basically alerts the application that the picture has been
