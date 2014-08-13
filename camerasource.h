@@ -20,6 +20,7 @@
 #ifndef CAMERASOURCE_H
 #define CAMERASOURCE_H
 
+#include <QFile>
 #include <QImage>
 #include <QDebug>
 #include <QPixmap>
