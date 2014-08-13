@@ -19,7 +19,7 @@
 
 import QtQuick 2.2
 import QtQuick.Controls 1.1
-import QtMultimedia 5.3
+import QtMultimedia 5.2
 
 // import our custom C++ types
 import CameraSource 1.0
@@ -30,9 +30,9 @@ ApplicationWindow {
   visible: true
 
   // set a default width and height
-  width: 1280
-  height: 720
-
+//  width: 1280
+//  height: 720
+  color: "black"
   // and window title
   title: qsTr("Makers Local 256 Photobooth")
 
@@ -132,6 +132,8 @@ ApplicationWindow {
       visible: false
       // fill the screen (or at least the window)
       anchors.fill: parent
+      // mirror the output image, for android
+      mirror: true
     }
 
     // our counter storage
