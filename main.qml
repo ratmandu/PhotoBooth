@@ -66,7 +66,7 @@ ApplicationWindow {
       // this gets called
       onPictureCaptured: {
         // we set the file name as the image source
-        pictureDisplay.source = "file:///" + imageLocation
+        pictureDisplay.source = "file://" + imageLocation
         // set it to be visible
         pictureDisplay.visible = true
         // hide the video preview
@@ -82,7 +82,8 @@ ApplicationWindow {
       onStripGenerated: {
         // set our source to the file name
         // of the final strip image
-        pictureDisplay.source = "file:///" + imageLocation
+        pictureDisplay.source = ""
+        pictureDisplay.source = "file://" + imageLocation
         // Set it to be visible
         pictureDisplay.visible = true
         // hide the video preview

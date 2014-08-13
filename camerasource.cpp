@@ -123,9 +123,11 @@ void CameraSource::generateStrip(int numberOfPictures)
   finalStrip.save(&file);
 
   // Wait for the image to be written, then close the file
-  file.waitForBytesWritten(1000);
+  file.waitForBytesWritten(3000);
   file.close();
 
+  qDebug() << file.fileName();
+  qDebug() << finalStripLocation;
   // And we tell the QML code where it is
   emit stripGenerated(finalStripLocation);
 }
