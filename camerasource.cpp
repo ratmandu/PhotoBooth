@@ -115,13 +115,16 @@ void CameraSource::generateStrip(int numberOfPictures)
   // and append the current date and time, plus a file extension
   finalStripLocation.append(QDateTime::currentDateTime().toString(Qt::TextDate)).append(".jpg");
 
+  // set up a QFile to save the image to
   QFile file(finalStripLocation);
   file.open(QIODevice::WriteOnly);
 
   // Finally, we save the image
   finalStrip.save(&file);
 
+  // Wait for the image to be written, then close the file
   file.waitForBytesWritten(1000);
+  file.close();
 
   // And we tell the QML code where it is
   emit stripGenerated(finalStripLocation);
