@@ -50,7 +50,55 @@ Rectangle {
 
       columns: 2
 
+      Text {
+        color: "white"
+        font.pixelSize: 20
+        text: "Number of pictures:"
+      }
 
+      Row {
+        spacing: 15
+
+        Slider {
+          id: pictureNumberSlider
+          minimumValue: 2
+          maximumValue: 10
+          stepSize: 1
+
+          value: settings.getInt("ImageCount", 3)
+        }
+
+        Text {
+          color: "white"
+          font.pixelSize: 20
+          text: pictureNumberSlider.value.toString()
+        }
+      }
+
+      Text {
+        color: "white"
+        font.pixelSize: 20
+        text: "Seconds for setup:"
+      }
+
+      Row {
+        spacing: 15
+
+        Slider {
+          id: setupTimeSlider
+          minimumValue: 1
+          maximumValue: 30
+          stepSize: 1
+
+          value: settings.getInt("CountDownCounter", 4)
+        }
+
+        Text {
+          color: "white"
+          font.pixelSize: 20
+          text: setupTimeSlider.value
+        }
+      }
     }
 
   }
@@ -98,6 +146,11 @@ Rectangle {
 
   function saveSettings() {
     // TODO: Save settings and close the panel here
+    settings.setInt("CountDownCounter", setupTimeSlider.value)
+    settings.setInt("ImageCount", pictureNumberSlider.value)
+
+    counters.countDownCounter = setupTimeSlider.value
+    counters.imageCount = pictureNumberSlider.value
 
     dialogClosed()
   }
