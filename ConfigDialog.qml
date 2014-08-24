@@ -27,10 +27,79 @@ Rectangle {
   anchors.fill: parent
   color: "black"
 
+  signal dialogClosed()
+
   // TODO: Actually create the controls for changing settings
+  Rectangle {
+    id: controlRect
+    color: "black"
+    width: parent.width
+    height: parent.height - 100
+    anchors.top: parent.top
+    anchors.left: parent.left
+
+    GridLayout {
+      id: controlGrid
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.topMargin: 20
+      anchors.leftMargin: 20
+
+      columnSpacing: 20
+      rowSpacing: 20
+
+      columns: 2
+
+
+    }
+
+  }
+
+  Rectangle {
+    id: buttonRect
+    color: "#252525"
+    width: parent.width
+    height: 100
+    anchors.top: controlRect.bottom
+    anchors.left: parent.left
+
+    Button {
+      id: saveButton
+      text: "Save"
+      anchors.right: parent.right
+      anchors.rightMargin: 25
+      anchors.verticalCenter: parent.verticalCenter
+      height: 75
+      width: 200
+      style: DarkButtonStyle {}
+
+      onClicked: {
+        saveSettings()
+        dialogClosed()
+      }
+    }
+
+    Button {
+      id: cancelButton
+      text: "Cancel"
+      anchors.right: saveButton.left
+      anchors.rightMargin: 25
+      anchors.verticalCenter: parent.verticalCenter
+      height: 75
+      width: 200
+      style: DarkButtonStyle {}
+
+      onClicked: {
+        loadSettings()
+        dialogClosed()
+      }
+    }
+  }
 
   function saveSettings() {
     // TODO: Save settings and close the panel here
+
+    dialogClosed()
   }
 
   function loadSettings() {

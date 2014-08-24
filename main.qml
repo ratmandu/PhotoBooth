@@ -30,14 +30,14 @@ ApplicationWindow {
   visible: true
 
   // set a default width and height
-//  width: 1280
-//  height: 720
+  width: 1280
+  height: 720
   color: "black"
   // and window title
   title: qsTr("Makers Local 256 Photobooth")
 
   // uncomment this to make the application full screen
-  visibility: "FullScreen"
+//  visibility: "FullScreen"
 
   Rectangle {
     id: mainBody
@@ -56,6 +56,10 @@ ApplicationWindow {
       source: camera
       // fill the screen/window
       anchors.fill: parent
+
+      onOrientationChanged: {
+        orientation: orientation - 90
+      }
     }
 
     // our camera source
@@ -111,6 +115,9 @@ ApplicationWindow {
       // This is what we do when a correct password
       // was entered
       onPasswordCorrect: {
+        passwordDialog.visible = false
+        video.visible = false
+        configDialog.visible = true
       }
 
       // and what we do when the password is incorrect
@@ -156,13 +163,13 @@ ApplicationWindow {
       countDownNumber: counters.countDownCounter
     }
 
-    // This button starts our picture taking spree
     StartButton {
       id: startButton
       anchors.horizontalCenter: parent.horizontalCenter
       anchors.top: parent.top
       anchors.topMargin: 20
 
+      buttonText: "Start!"
       // we do want to see it by default
       visible: true
 
@@ -176,6 +183,7 @@ ApplicationWindow {
         timers.countdownTimer.start()
       }
     }
+
 
     // this is our invisible settings button
     InvisiButton {
@@ -194,6 +202,20 @@ ApplicationWindow {
       onButtonClick: {
         passwordDialog.visible = true
         video.visible = false
+        startButton.visible = false
+      }
+    }
+
+    ConfigDialog {
+      id: configDialog
+      anchors.fill: parent
+
+      visible: false
+
+      onDialogClosed: {
+        configDialog.visible = false
+        startButton.visible = true
+        video.visible = true
       }
     }
   }

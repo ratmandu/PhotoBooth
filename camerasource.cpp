@@ -29,8 +29,17 @@ CameraSource::CameraSource(QObject *parent) :
   // create the capture object, this takes the pictures
   capture = new QCameraImageCapture(camera, this);
 
-  // Set the capture mode to StillImage
-  camera->setCaptureMode(QCamera::CaptureStillImage);
+  // Create the recorder object, this takes the videos
+  recorder = new QMediaRecorder(camera, this);
+
+  QVideoEncoderSettings settings = recorder->videoSettings();
+
+  settings.setResolution(1280, 720);
+  settings.setQuality(QMultimedia::VeryHighQuality);
+  settings.setFrameRate(30);
+
+  recorder->setVideoSettings(settings);
+  recorder->setContainerFormat("mp4");
 
   // Start the camera
 //  camera->start();
@@ -57,6 +66,9 @@ CameraSource::~CameraSource()
 // Takes a picture, and saves the image
 void CameraSource::takePicture(int pictureNumber)
 {
+  // Set the capture mode to StillImage
+  camera->setCaptureMode(QCamera::CaptureStillImage);
+
   // make sure the capture object is ready to capture an image
   if (capture->isReadyForCapture()) {
     // We need to find the proper place to save the pictures
@@ -72,6 +84,24 @@ void CameraSource::takePicture(int pictureNumber)
     // save the picture in ram for the final strip generation
     lastPictureNumber = pictureNumber;
   }
+}
+
+void CameraSource::startVideo()
+{
+  camera->setCaptureMode(QCamera::CaptureVideo);
+
+  saveLocation = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
+
+  saveLocation.append("/Photobooth/Videos/").append(QDateTime::currentDateTime().toString(Qt::TextDate)).append(".mp4");
+
+  recorder->record();
+}
+
+void CameraSource::stopVideo()
+{
+  recorder->stop();
+//  camera->stop();
+//  camera->start();
 }
 
 // Generates the final image strip, saves it, and sends the file path

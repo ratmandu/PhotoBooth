@@ -28,10 +28,12 @@
 #include <QCamera>
 #include <QPainter>
 #include <QDateTime>
+#include <QMediaRecorder>
 #include <QCameraControl>
 #include <QDesktopServices>
 #include <QCameraImageCapture>
 #include <QVideoSurfaceFormat>
+#include <QVideoEncoderSettings>
 #include <QAbstractVideoSurface>
 
 class CameraSource : public QObject
@@ -69,6 +71,12 @@ public:
   // and save the original to the drive
   Q_INVOKABLE void takePicture(int pictureNumber);
 
+  // This will take a video and store it to the disk
+  Q_INVOKABLE void startVideo();
+
+  // This will stop the video recording
+  Q_INVOKABLE void stopVideo();
+
   // This takes the previous images, and combines them into a
   // strip, then saves, and send the filename to the QML code
   Q_INVOKABLE void generateStrip(int numberOfPictures);
@@ -79,6 +87,9 @@ private:
 
   // Our image capture object. This takes the pictures.
   QCameraImageCapture *capture;
+
+  // Video recorder object. This takes the videos.
+  QMediaRecorder *recorder;
 
   // This holds the actual image format the camera uses
   QVideoSurfaceFormat m_format;

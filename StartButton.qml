@@ -23,8 +23,10 @@ import QtQuick 2.0
 Rectangle {
   signal buttonClicked()
 
-  width: 200
-  height: 125
+  property alias buttonText: textOnButton.text
+
+  width: textOnButton.width + 20
+  height: 200
   color: "black"
 
   radius: 10
@@ -38,6 +40,7 @@ Rectangle {
   }
 
   Text {
+    id: textOnButton
     anchors.centerIn: parent
 
     color: "#eee"

@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
     // lets create the folders we need
     dir.mkpath(folder.arg("Final"));
     dir.mkpath(folder.arg("SinglePics"));
+    dir.mkpath(folder.arg("Videos"));
   }
 
   // Register our CameraSource so our QML code can use it

@@ -35,14 +35,19 @@ Item {
     // what to do when the timer has finished
     onTriggered: {
       // if we have more time to go
-      if (counters.countDownCounter > 0) {
+      if (counters.countDownCounter > 1) {
         // decrease the number of seconds
         counters.countDownCounter -= 1
         // start the timer again
         countdownTimer.start()
-      } else if (counters.countDownCounter == 0) { // Time's up!
+      } else if (counters.countDownCounter == 1) { // Time to take the picture
         // capture the picture
         camera.takePicture(counters.imageCount)
+        // decrease the seconds
+        counters.countDownCounter -= 1
+        // start the timer again
+        countdownTimer.start()
+      } else if (counters.countDownCounter == 0) { // Time's up!
         // hide the countdown display
         countDown.visible = false
         // reset the counter

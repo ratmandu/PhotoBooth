@@ -33,6 +33,8 @@ Rectangle {
   signal passwordCorrect()
   signal passwordIncorrect()
 
+  property bool passwordChange: false
+
   Column {
     id: passColumn
     anchors.fill: parent
@@ -47,7 +49,7 @@ Rectangle {
       anchors.horizontalCenter: parent.horizontalCenter
       horizontalAlignment: Text.AlignHCenter
       font.pixelSize: 30
-      text: "Please enter setup PIN"
+      text: passwordChange ? "Please enter new PIN" : "Please enter setup PIN"
     }
 
     // our text field that holds the password
