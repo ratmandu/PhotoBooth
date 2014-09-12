@@ -156,6 +156,12 @@ void CameraSource::generateStrip(int numberOfPictures)
   file.waitForBytesWritten(3000);
   file.close();
 
+  // Tell android to scan the new file and add it to the Gallery
+  QAndroidJniObject::callStaticMethod<void>("org/qtproject/qt5/android/multimedia/QtMultimediaUtils",
+                                            "registerMediaFile",
+                                            "(Ljava/lang/String;)V",
+                                            QAndroidJniObject::fromString(file.fileName()).object());
+
   qDebug() << file.fileName();
   qDebug() << finalStripLocation;
   // And we tell the QML code where it is

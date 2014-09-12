@@ -30,11 +30,13 @@
 #include <QDateTime>
 #include <QMediaRecorder>
 #include <QCameraControl>
+#include <QtAndroidExtras>
 #include <QDesktopServices>
 #include <QCameraImageCapture>
 #include <QVideoSurfaceFormat>
 #include <QVideoEncoderSettings>
 #include <QAbstractVideoSurface>
+#include <QtAndroidExtras/QAndroidJniObject>
 
 class CameraSource : public QObject
 {
