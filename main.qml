@@ -37,7 +37,7 @@ ApplicationWindow {
   title: qsTr("Makers Local 256 Photobooth")
 
   // uncomment this to make the application full screen
-//  visibility: "FullScreen"
+  visibility: "FullScreen"
 
   Rectangle {
     id: mainBody
