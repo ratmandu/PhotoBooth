@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets multimedia
+QT += qml quick widgets multimedia androidextras
 
 SOURCES += main.cpp \
     camerasource.cpp \
